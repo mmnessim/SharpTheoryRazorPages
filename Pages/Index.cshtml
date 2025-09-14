@@ -13,9 +13,15 @@
         <p>Version: @Model.Description.Version</p>
     </div>
 } 
-else
+
+@if (Model.Keys != null && Model.Keys.Count > 0)
 {
-    <div>
-        <p>Oops! Something went wrong</p>
-    </div>
+    <ul>
+        @foreach(var key in Model.Keys)
+        {
+            <li>
+                <strong>@key.Name</strong> - Mode: @key.Mode, @key.NumSharps Sharps @key.NumFlats Flats
+            </li>
+        }
+    </ul>
 }

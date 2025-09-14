@@ -16,5 +16,14 @@ namespace SharpTheory.Controllers
             if (root == null) { return NotFound(); }
             return Ok(root.Description);
         }
+
+        [HttpGet("keys/all")]
+        public ActionResult<IEnumerable<TheoryKey>> GetAllKeys()
+        {
+            var json = System.IO.File.ReadAllText("Data/data.json");
+            var root = JsonSerializer.Deserialize<TheoryRoot>(json);
+            if (root == null) { return NotFound(); }
+            return Ok(root.Keys.ToList());
+        }
     }
 }

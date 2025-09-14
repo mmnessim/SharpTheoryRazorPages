@@ -8,22 +8,25 @@ namespace SharpTheory.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        public DateTime CurrentTime { get; set; }
         public TheoryDescription? Description { get; set; }
+        public List<TheoryKey>? Keys { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
 
-        public async Task OnGetAsync()
+        public void OnGet()
         {
-            using var client = new HttpClient { BaseAddress = new Uri("https://localhost:8081/") };
-            var response = await client.GetAsync("api/description");
-            if (response.IsSuccessStatusCode)
-            {
-                var json = await response.Content.ReadAsStringAsync();
-                Description = JsonSerializer.Deserialize<TheoryDescription>(json);
-            }
+            var json = System.IO.File.ReadAllText("Data/data.json");
+            var root = JsonSerializer.Deserialize<TheoryRoot>(json);
+            Description = root?.Description;
+            Keys = root?.Keys;
+
+            CurrentTime = DateTime.Now;
+
+            _logger.LogInformation("Index page loaded at {Time}", CurrentTime);
         }
     }
 }
