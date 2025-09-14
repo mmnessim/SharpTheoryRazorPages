@@ -13,8 +13,3 @@
         <p>Version: @Model.Description.Version</p>
     </div>
 } 
-
-@if (Model.Keys != null && Model.Keys.Count > 0)
-{
-    @await Html.PartialAsync("Partials/_KeyListPartial", Model.Keys)
-}
