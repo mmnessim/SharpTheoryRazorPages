@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpTheory", "SharpTheory.csproj", "{AEDF0668-7A90-4907-96CA-687011C8911D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEDF0668-7A90-4907-96CA-687011C8911D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEDF0668-7A90-4907-96CA-687011C8911D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEDF0668-7A90-4907-96CA-687011C8911D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEDF0668-7A90-4907-96CA-687011C8911D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3B2BDE0-2B61-4CAB-BC40-42175FC45536}
+	EndGlobalSection
+EndGlobal

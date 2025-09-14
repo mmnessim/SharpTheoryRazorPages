@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@if (Model.Description != null)
+{
+    <div class="text-center">
+        <h2>@Model.Description.Title</h2>
+        <p>@Model.Description.Description</p>
+        <p>Author: @Model.Description.Author</p>
+        <p>Version: @Model.Description.Version</p>
+    </div>
+} 
+else
+{
+    <div>
+        <p>Oops! Something went wrong</p>
+    </div>
+}
