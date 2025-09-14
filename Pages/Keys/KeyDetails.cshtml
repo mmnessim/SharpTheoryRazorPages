@@ -1,0 +1,50 @@
+﻿@page "/keys/{id}"
+@model SharpTheory.Pages.KeyDetailsModel
+@{
+    if (Model.Key != null)
+    {
+        <div class="d-flex align-items-center">
+            <h1>
+                @Model.Key.Name @if (Model.Key.Enharmonic != null)
+                {
+                    <span>
+                        / @Model.Key.Enharmonic[0]
+                    </span>
+
+                }
+            </h1>
+
+            <a asp-page="/Index" class="btn btn-secondary mb-3 ms-auto">
+                &larr; Back to Keys List
+            </a>
+        </div>
+        
+        <h2>Relative: @Model.Key.Relative</h2>
+        <ul style="list-style: none; padding: 0; display: flex; gap: 0.5rem;">
+            @if (Model.Scale != null)
+            {
+                foreach (var note in Model.Scale.Notes)
+                {
+                    <li style="border: 1px solid #ccc; border-radius: 4px; padding: 0.5rem 1rem; margin: 0;">
+                        @note
+                    </li>
+                }
+            }
+        </ul>
+        @if (Model.Scale != null)
+        {
+            <h3>Tonic Triad</h3>
+            <div class="d-flex gap-2">
+                <p class="badge bg-primary fs-5 m-0">
+                    @Model.Scale.Notes[0]
+                </p>
+                <p class="badge bg-primary fs-5 m-0">
+                    @Model.Scale.Notes[2]
+                </p>
+                <p class="badge bg-primary fs-5 m-0">
+                    @Model.Scale.Notes[4]
+                </p>
+            </div>
+        }
+    }
+}

@@ -16,12 +16,5 @@
 
 @if (Model.Keys != null && Model.Keys.Count > 0)
 {
-    <ul>
-        @foreach(var key in Model.Keys)
-        {
-            <li>
-                <strong>@key.Name</strong> - Mode: @key.Mode, @key.NumSharps Sharps @key.NumFlats Flats
-            </li>
-        }
-    </ul>
+    @await Html.PartialAsync("Partials/_KeyListPartial", Model.Keys)
 }

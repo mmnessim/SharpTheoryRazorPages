@@ -1,0 +1,14 @@
+﻿@model IEnumerable<SharpTheory.Models.TheoryKey>
+@using System.Net
+
+<ul>
+@foreach(var key in Model)
+{
+    var urlName = key.Name.Replace(" ", "-").ToLower();
+    <li class="btn">
+        <a asp-page="/Keys/KeyDetails" asp-route-id="@urlName" class="btn btn-primary">
+            <strong>@key.Name</strong> - Mode: @key.Mode, @key.NumSharps Sharps @key.NumFlats Flats
+        </a>
+    </li>
+}
+</ul>
