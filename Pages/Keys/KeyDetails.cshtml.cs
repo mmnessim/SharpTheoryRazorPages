@@ -26,7 +26,7 @@ namespace SharpTheory.Pages
                 Scale = scales?.Major;
             } else
             {
-                Scale = scales?.NaturalMinor;
+                Scale = scales?.HarmonicMinor;
             }
 
         }

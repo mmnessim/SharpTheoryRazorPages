@@ -31,20 +31,122 @@
                 }
             }
         </ul>
-        @if (Model.Scale != null)
+        @if (Model.Scale != null && Model.Key.Mode == "major")
         {
-            <h3>Tonic Triad</h3>
-            <div class="d-flex gap-2">
-                <p class="badge bg-primary fs-5 m-0">
-                    @Model.Scale.Notes[0]
-                </p>
-                <p class="badge bg-primary fs-5 m-0">
-                    @Model.Scale.Notes[2]
-                </p>
-                <p class="badge bg-primary fs-5 m-0">
-                    @Model.Scale.Notes[4]
-                </p>
-            </div>
+            <table class="table table-bordered w-auto">
+                <thead>
+                    <tr>
+                        <th>Roman Numeral</th>
+                        <th>Root</th>
+                        <th>Third</th>
+                        <th>Fifth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>I</td>
+                        <td>@Model.Scale.Notes[0]</td>
+                        <td>@Model.Scale.Notes[2]</td>
+                        <td>@Model.Scale.Notes[4]</td>
+                    </tr>
+                    <tr>
+                        <td>ii</td>
+                        <td>@Model.Scale.Notes[1]</td>
+                        <td>@Model.Scale.Notes[3]</td>
+                        <td>@Model.Scale.Notes[5]</td>
+                    </tr>
+                    <tr>
+                        <td>iii</td>
+                        <td>@Model.Scale.Notes[2]</td>
+                        <td>@Model.Scale.Notes[4]</td>
+                        <td>@Model.Scale.Notes[6]</td>
+                    </tr>
+                    <tr>
+                        <td>IV</td>
+                        <td>@Model.Scale.Notes[3]</td>
+                        <td>@Model.Scale.Notes[5]</td>
+                        <td>@Model.Scale.Notes[0]</td>
+                    </tr>
+                    <tr>
+                        <td>V</td>
+                        <td>@Model.Scale.Notes[4]</td>
+                        <td>@Model.Scale.Notes[6]</td>
+                        <td>@Model.Scale.Notes[1]</td>
+                    </tr>
+                    <tr>
+                        <td>vi</td>
+                        <td>@Model.Scale.Notes[5]</td>
+                        <td>@Model.Scale.Notes[0]</td>
+                        <td>@Model.Scale.Notes[2]</td>
+                    </tr>
+                    <tr>
+                        <td>vii&deg</td>
+                        <td>@Model.Scale.Notes[6]</td>
+                        <td>@Model.Scale.Notes[1]</td>
+                        <td>@Model.Scale.Notes[3]</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+        @if (Model.Scale != null && Model.Key.Mode == "minor")
+        {
+            <h1 style="background-color:red;">
+            Needs reworking: III chord should have flatted 7th scale degree. Will likely need to have variables for both natural and harmonic minor
+            </h1>
+            <table class="table table-bordered w-auto">
+                <thead>
+                    <tr>
+                        <th>Roman Numeral</th>
+                        <th>Root</th>
+                        <th>Third</th>
+                        <th>Fifth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>i</td>
+                        <td>@Model.Scale.Notes[0]</td>
+                        <td>@Model.Scale.Notes[2]</td>
+                        <td>@Model.Scale.Notes[4]</td>
+                    </tr>
+                    <tr>
+                        <td>ii&deg</td>
+                        <td>@Model.Scale.Notes[1]</td>
+                        <td>@Model.Scale.Notes[3]</td>
+                        <td>@Model.Scale.Notes[5]</td>
+                    </tr>
+                    <tr>
+                        <td>III</td>
+                        <td>@Model.Scale.Notes[2]</td>
+                        <td>@Model.Scale.Notes[4]</td>
+                        <td>@Model.Scale.Notes[6]</td>
+                    </tr>
+                    <tr>
+                        <td>iv</td>
+                        <td>@Model.Scale.Notes[3]</td>
+                        <td>@Model.Scale.Notes[5]</td>
+                        <td>@Model.Scale.Notes[0]</td>
+                    </tr>
+                    <tr>
+                        <td>V</td>
+                        <td>@Model.Scale.Notes[4]</td>
+                        <td>@Model.Scale.Notes[6]</td>
+                        <td>@Model.Scale.Notes[1]</td>
+                    </tr>
+                    <tr>
+                        <td>VI</td>
+                        <td>@Model.Scale.Notes[5]</td>
+                        <td>@Model.Scale.Notes[0]</td>
+                        <td>@Model.Scale.Notes[2]</td>
+                    </tr>
+                    <tr>
+                        <td>vii&deg</td>
+                        <td>@Model.Scale.Notes[6]</td>
+                        <td>@Model.Scale.Notes[1]</td>
+                        <td>@Model.Scale.Notes[3]</td>
+                    </tr>
+                </tbody>
+            </table>
         }
     }
 }
