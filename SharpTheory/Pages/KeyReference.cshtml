@@ -1,13 +1,14 @@
 ﻿@page
 @model SharpTheory.Pages.KeyReferenceModel
 
-<h1>Key Reference</h1>
-<p>
-    Click on any key to get some basic information about it.
-</p>
+<div class="staff-background">
+    <h1>Key Reference</h1>
+    <p>
+        Click on any key to get some basic information about it.
+    </p>
 
-@if (Model.Keys != null && Model.Keys.Count > 0)
-{
-    @await Html.PartialAsync("Partials/_KeyListPartial", Model.Keys)
-}
-
+    @if (Model.Keys != null && Model.Keys.Count > 0)
+    {
+        @await Html.PartialAsync("Partials/_KeyListPartial", Model.Keys)
+    }
+</div>
