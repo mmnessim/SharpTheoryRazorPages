@@ -1,3 +1,10 @@
+:root {
+    --primary: #5e7a1f; /* More muted olive green */
+    --secondary: #8b6f4e; /* Earthy brown (unchanged) */
+    --accent: #b7b97b; /* Muted moss yellow-green (unchanged) */
+    --background: #e6e3d6; /* Slightly darker earthy off-white */
+    --text: #3e4631; /* Deep olive/brown for text (unchanged) */
+}
 html {
   font-size: 14px;
 }
@@ -19,6 +26,8 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: var(--background);
+  color: var(--text);
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -28,4 +37,20 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+.btn-primary {
+    background-color: var(--secondary) !important;
+    border-color: var(--primary) !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary) !important;
+}
+
+/* Navbar */
+.navbar, .navbar-brand, .nav-link, .navheader {
+    background-color: var(--primary) !important;
+    color: #fff !important;
 }

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpTheory", "SharpTheory.csproj", "{AEDF0668-7A90-4907-96CA-687011C8911D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpTheoryTest", "..\SharpTheoryTest\SharpTheoryTest.csproj", "{56E747BE-6A78-453A-8A25-82085AA2A2C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AEDF0668-7A90-4907-96CA-687011C8911D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEDF0668-7A90-4907-96CA-687011C8911D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEDF0668-7A90-4907-96CA-687011C8911D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56E747BE-6A78-453A-8A25-82085AA2A2C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56E747BE-6A78-453A-8A25-82085AA2A2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56E747BE-6A78-453A-8A25-82085AA2A2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56E747BE-6A78-453A-8A25-82085AA2A2C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

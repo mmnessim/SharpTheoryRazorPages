@@ -9,12 +9,15 @@ namespace SharpTheory.Pages
     {
         public TheoryKey? Key { get; set; }
         public int? NumSharps { get; set; }
+        public int? NumFlats { get; set; }
 
         [BindProperty]
         public string? SelectedKeyName { get; set; }
 
         [BindProperty]
-        public int? UserAnswer { get; set; }
+        public int? UserSharps { get; set; }
+        [BindProperty]
+        public int? UserFlats { get; set; }
         public string? ResultMessage { get; set; }
 
         public void OnGet()
@@ -25,6 +28,7 @@ namespace SharpTheory.Pages
             var random = new Random();
             Key = root?.Keys[random.Next(root.Keys.Count)];
             NumSharps = Key?.NumSharps;
+            NumFlats = Key?.NumFlats;
             SelectedKeyName = Key?.Name;
         }
 
@@ -37,14 +41,20 @@ namespace SharpTheory.Pages
             {
                 Key = root.Keys.FirstOrDefault(k => k.Name == SelectedKeyName);
                 NumSharps = Key?.NumSharps ?? 0;
+                NumFlats = Key?.NumFlats ?? 0;
             }
 
-            if (UserAnswer.HasValue && Key != null)
+            if (UserSharps.HasValue && Key != null && UserFlats.HasValue)
             {
-                ResultMessage = UserAnswer == NumSharps
-                    ? "Correct!"
-                    : $"Incorrect. The correct answer is {NumSharps}.";
+                ResultMessage = UserSharps == NumSharps && UserFlats == NumFlats
+                    ? $"Correct! {NumSharps} Sharps and {NumFlats} Flats"
+                    : $"Incorrect. The correct answer is {NumSharps} sharps and {NumFlats} flats.";
             }
+        }
+
+        public IActionResult OnPostNewQuestion()
+        {
+            return RedirectToPage();
         }
     }
 }

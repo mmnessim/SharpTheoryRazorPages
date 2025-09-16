@@ -6,8 +6,18 @@
     <h1>How many sharps or flats does @Model.Key.Name have?</h1>
     <form method="post">
         <input type="hidden" asp-for="SelectedKeyName" />
-        <input type="number" asp-for="UserAnswer" class="form-control" />
+        <div class="mb-2">
+            <label asp-for="UserSharps" class="form-label">Sharps</label>
+            <input type="number" asp-for="UserSharps" class="form-control" />
+        </div>
+        <div class="mb-2">
+            <label asp-for="UserFlats" class="form-label">Flats</label>
+            <input type="number" asp-for="UserFlats" class="form-control" />
+        </div>
         <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+    <form method="post" asp-page-handler="NewQuestion">
+        <button type="submit" class="btn btn-secondary mt-2">New Question</button>
     </form>
     @if (Model.ResultMessage != null)
     {

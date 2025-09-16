@@ -1,6 +1,6 @@
 {
   "description": {
-    "title": "Sharp Theory",
+    "title": "SharpTheory",
     "version": "0.0.1",
     "author": "Mounir Nessim",
     "description": "A music theory API and demo site written in C#"
