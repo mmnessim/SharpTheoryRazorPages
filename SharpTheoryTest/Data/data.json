@@ -1,0 +1,719 @@
+{
+  "description": {
+    "title": "SharpTheory",
+    "version": "0.0.1",
+    "author": "Mounir Nessim",
+    "description": "A music theory API and demo site written in C#"
+  },
+  "integers": [
+    {
+      "integer": 0,
+      "names": [ "C" ]
+    },
+    {
+      "integer": 1,
+      "names": [ "C#", "Db" ]
+    },
+    {
+      "integer": 2,
+      "names": [ "D" ]
+    },
+    {
+      "integer": 3,
+      "names": [ "D#", "Eb" ]
+    },
+    {
+      "integer": 4,
+      "names": [ "E", "Fb" ]
+    },
+    {
+      "integer": 5,
+      "names": [ "F", "E#" ]
+    },
+    {
+      "integer": 6,
+      "names": [ "F#", "Gb" ]
+    },
+    {
+      "integer": 7,
+      "names": [ "G" ]
+    },
+    {
+      "integer": 8,
+      "names": [ "G#", "Ab" ]
+    },
+    {
+      "integer": 9,
+      "names": [ "A" ]
+    },
+    {
+      "integer": 10,
+      "names": [ "A#", "Bb" ]
+    },
+    {
+      "integer": 11,
+      "names": [ "B", "Cb" ]
+    }
+  ],
+  "keys": [
+    {
+      "name": "C Major",
+      "mode": "major",
+      "integer": 0,
+      "sharps": [],
+      "flats": [],
+      "num_sharps": 0,
+      "num_flats": 0,
+      "relative": "A minor"
+    },
+    {
+      "name": "G Major",
+      "mode": "major",
+      "integer": 7,
+      "sharps": [ "F#" ],
+      "flats": [],
+      "num_sharps": 1,
+      "num_flats": 0,
+      "relative": "E minor"
+    },
+    {
+      "name": "D Major",
+      "mode": "major",
+      "integer": 2,
+      "sharps": [ "F#", "C#" ],
+      "flats": [],
+      "num_sharps": 2,
+      "num_flats": 0,
+      "relative": "B minor"
+    },
+    {
+      "name": "A Major",
+      "mode": "major",
+      "integer": 9,
+      "sharps": [ "F#", "C#", "G#" ],
+      "flats": [],
+      "num_sharps": 3,
+      "num_flats": 0,
+      "relative": "F# minor"
+    },
+    {
+      "name": "E Major",
+      "mode": "major",
+      "integer": 4,
+      "sharps": [ "F#", "C#", "G#", "D#" ],
+      "flats": [],
+      "num_sharps": 4,
+      "num_flats": 0,
+      "relative": "C# minor"
+    },
+    {
+      "name": "B Major",
+      "mode": "major",
+      "integer": 11,
+      "sharps": [ "F#", "C#", "G#", "D#", "A#" ],
+      "flats": [],
+      "num_sharps": 5,
+      "num_flats": 0,
+      "relative": "G# minor",
+      "enharmonic": [ "Cb Major", "A# minor" ]
+    },
+    {
+      "name": "F# Major",
+      "mode": "major",
+      "integer": 6,
+      "sharps": [ "F#", "C#", "G#", "D#", "A#", "E#" ],
+      "flats": [],
+      "num_sharps": 6,
+      "num_flats": 0,
+      "relative": "D# minor",
+      "enharmonic": [ "Gb Major", "Eb minor" ]
+    },
+    {
+      "name": "C# Major",
+      "mode": "major",
+      "integer": 1,
+      "sharps": [ "F#", "C#", "G#", "D#", "A#", "E#", "B#" ],
+      "flats": [],
+      "num_sharps": 7,
+      "num_flats": 0,
+      "relative": "A# minor",
+      "enharmonic": [ "Db Major", "Bb minor" ]
+    },
+    {
+      "name": "F Major",
+      "mode": "major",
+      "integer": 5,
+      "sharps": [],
+      "flats": [ "Bb" ],
+      "num_sharps": 0,
+      "num_flats": 1,
+      "relative": "D minor"
+    },
+    {
+      "name": "Bb Major",
+      "mode": "major",
+      "integer": 10,
+      "sharps": [],
+      "flats": [ "Bb", "Eb" ],
+      "num_sharps": 0,
+      "num_flats": 2,
+      "relative": "G minor"
+    },
+    {
+      "name": "Eb Major",
+      "mode": "major",
+      "integer": 3,
+      "sharps": [],
+      "flats": [ "Bb", "Eb", "Ab" ],
+      "num_sharps": 0,
+      "num_flats": 3,
+      "relative": "C minor"
+    },
+    {
+      "name": "Ab Major",
+      "mode": "major",
+      "integer": 8,
+      "sharps": [],
+      "flats": [ "Bb", "Eb", "Ab", "Db" ],
+      "num_sharps": 0,
+      "num_flats": 4,
+      "relative": "F minor"
+    },
+    {
+      "name": "Db Major",
+      "mode": "major",
+      "integer": 1,
+      "sharps": [],
+      "flats": [ "Bb", "Eb", "Ab", "Db", "Gb" ],
+      "num_sharps": 0,
+      "num_flats": 5,
+      "relative": "Bb minor",
+      "enharmonic": [ "C# Major", "A# minor" ]
+    },
+    {
+      "name": "Gb Major",
+      "mode": "major",
+      "integer": 6,
+      "sharps": [],
+      "flats": [ "Bb", "Eb", "Ab", "Db", "Gb", "Cb" ],
+      "num_sharps": 0,
+      "num_flats": 6,
+      "relative": "Eb minor",
+      "enharmonic": [ "F# Major", "D# minor" ]
+    },
+    {
+      "name": "Cb Major",
+      "mode": "major",
+      "integer": 11,
+      "sharps": [],
+      "flats": [ "Bb", "Eb", "Ab", "Db", "Gb", "Cb", "Fb" ],
+      "num_sharps": 0,
+      "num_flats": 7,
+      "relative": "Ab minor",
+      "enharmonic": [ "B Major", "F# minor" ]
+    },
+    {
+      "name": "A minor",
+      "mode": "minor",
+      "integer": 9,
+      "sharps": [],
+      "flats": [],
+      "num_sharps": 0,
+      "num_flats": 0,
+      "relative": "C Major"
+    },
+    {
+      "name": "E minor",
+      "mode": "minor",
+      "integer": 4,
+      "sharps": [ "F#" ],
+      "flats": [],
+      "num_sharps": 1,
+      "num_flats": 0,
+      "relative": "G Major"
+    },
+    {
+      "name": "B minor",
+      "mode": "minor",
+      "integer": 11,
+      "sharps": [ "F#", "C#" ],
+      "flats": [],
+      "num_sharps": 2,
+      "num_flats": 0,
+      "relative": "D Major"
+    },
+    {
+      "name": "F# minor",
+      "mode": "minor",
+      "integer": 6,
+      "sharps": [ "F#", "C#", "G#" ],
+      "flats": [],
+      "num_sharps": 3,
+      "num_flats": 0,
+      "relative": "A Major"
+    },
+    {
+      "name": "C# minor",
+      "mode": "minor",
+      "integer": 1,
+      "sharps": [ "F#", "C#", "G#", "D#" ],
+      "flats": [],
+      "num_sharps": 4,
+      "num_flats": 0,
+      "relative": "E Major"
+    },
+    {
+      "name": "G# minor",
+      "mode": "minor",
+      "integer": 8,
+      "sharps": [ "F#", "C#", "G#", "D#", "A#" ],
+      "flats": [],
+      "num_sharps": 5,
+      "num_flats": 0,
+      "relative": "B Major",
+      "enharmonic": [ "Ab minor", "Cb Major" ]
+    },
+    {
+      "name": "D# minor",
+      "mode": "minor",
+      "integer": 3,
+      "sharps": [ "F#", "C#", "G#", "D#", "A#", "E#" ],
+      "flats": [],
+      "num_sharps": 6,
+      "num_flats": 0,
+      "relative": "F# Major",
+      "enharmonic": [ "Eb minor", "Gb Major" ]
+    },
+    {
+      "name": "A# minor",
+      "mode": "minor",
+      "integer": 10,
+      "sharps": [ "F#", "C#", "G#", "D#", "A#", "E#", "B#" ],
+      "flats": [],
+      "num_sharps": 7,
+      "num_flats": 0,
+      "relative": "C# Major",
+      "enharmonic": [ "Bb minor", "Db Major" ]
+    },
+    {
+      "name": "D minor",
+      "mode": "minor",
+      "integer": 2,
+      "sharps": [],
+      "flats": [ "Bb" ],
+      "num_sharps": 0,
+      "num_flats": 1,
+      "relative": "F Major"
+    },
+    {
+      "name": "G minor",
+      "mode": "minor",
+      "integer": 7,
+      "sharps": [],
+      "flats": [ "Bb", "Eb" ],
+      "num_sharps": 0,
+      "num_flats": 2,
+      "relative": "Bb Major"
+    },
+    {
+      "name": "C minor",
+      "mode": "minor",
+      "integer": 0,
+      "sharps": [],
+      "flats": [ "Bb", "Eb", "Ab" ],
+      "num_sharps": 0,
+      "num_flats": 3,
+      "relative": "Eb Major"
+    },
+    {
+      "name": "F minor",
+      "mode": "minor",
+      "integer": 5,
+      "sharps": [],
+      "flats": [ "Bb", "Eb", "Ab", "Db" ],
+      "num_sharps": 0,
+      "num_flats": 4,
+      "relative": "Ab Major"
+    },
+    {
+      "name": "Bb minor",
+      "mode": "minor",
+      "integer": 10,
+      "sharps": [],
+      "flats": [ "Bb", "Eb", "Ab", "Db", "Gb" ],
+      "num_sharps": 0,
+      "num_flats": 5,
+      "relative": "Db Major",
+      "enharmonic": [ "A# minor", "C# Major" ]
+    },
+    {
+      "name": "Eb minor",
+      "mode": "minor",
+      "integer": 3,
+      "sharps": [],
+      "flats": [ "Bb", "Eb", "Ab", "Db", "Gb", "Cb" ],
+      "num_sharps": 0,
+      "num_flats": 6,
+      "relative": "Gb Major",
+      "enharmonic": [ "D# minor", "F# Major" ]
+    },
+    {
+      "name": "Ab minor",
+      "mode": "minor",
+      "integer": 8,
+      "sharps": [],
+      "flats": [ "Bb", "Eb", "Ab", "Db", "Gb", "Cb", "Fb" ],
+      "num_sharps": 0,
+      "num_flats": 7,
+      "relative": "Cb Major",
+      "enharmonic": [ "G# minor", "B Major" ]
+    }
+  ],
+  "scales": [
+    {
+      "tonic": "C",
+      "integer": 0,
+      "major": {
+        "notes": [ "C", "D", "E", "F", "G", "A", "B" ],
+        "integers": [ 0, 2, 4, 5, 7, 9, 11 ]
+      },
+      "natural_minor": {
+        "notes": [ "C", "D", "Eb", "F", "G", "Ab", "Bb" ],
+        "integers": [ 0, 2, 3, 5, 7, 8, 10 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "C", "D", "Eb", "F", "G", "Ab", "B" ],
+        "integers": [ 0, 2, 3, 5, 7, 8, 11 ]
+      }
+    },
+    {
+      "tonic": "C#",
+      "integer": 1,
+      "major": {
+        "notes": [ "C#", "D#", "E#", "F#", "G#", "A#", "B#" ],
+        "integers": [ 1, 3, 5, 6, 8, 10, 0 ]
+      },
+      "natural_minor": {
+        "notes": [ "C#", "D#", "E", "F#", "G#", "A", "B" ],
+        "integers": [ 1, 3, 4, 6, 8, 9, 11 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "C#", "D#", "E", "F#", "G#", "A", "B#" ],
+        "integers": [ 1, 3, 4, 6, 8, 9, 0 ]
+      }
+    },
+    {
+      "tonic": "Db",
+      "integer": 1,
+      "major": {
+        "notes": [ "Db", "Eb", "F", "Gb", "Ab", "Bb", "C" ],
+        "integers": [ 1, 3, 5, 6, 8, 10, 0 ]
+      }
+    },
+    {
+      "tonic": "D",
+      "integer": 2,
+      "major": {
+        "notes": [ "D", "E", "F#", "G", "A", "B", "C#" ],
+        "integers": [ 2, 4, 6, 7, 9, 11, 1 ]
+      },
+      "natural_minor": {
+        "notes": [ "D", "E", "F", "G", "A", "Bb", "C" ],
+        "integers": [ 2, 4, 5, 7, 9, 10, 0 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "D", "E", "F", "G", "A", "Bb", "C#" ],
+        "integers": [ 2, 4, 5, 7, 9, 10, 1 ]
+      }
+    },
+    {
+      "tonic": "D#",
+      "integer": 3,
+      "natural_minor": {
+        "notes": [ "D#", "E#", "F#", "G#", "A#", "B", "C#" ],
+        "integers": [ 3, 5, 6, 8, 10, 11, 1 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "D#", "E#", "F#", "G#", "A#", "B", "C##" ],
+        "integers": [ 3, 5, 6, 8, 10, 11, 2 ]
+      }
+    },
+    {
+      "tonic": "Eb",
+      "integer": 3,
+      "major": {
+        "notes": [ "Eb", "F", "G", "Ab", "Bb", "C", "D" ],
+        "integers": [ 3, 5, 7, 8, 10, 0, 2 ]
+      },
+      "natural_minor": {
+        "notes": [ "Eb", "F", "Gb", "Ab", "Bb", "Cb", "Db" ],
+        "integers": [ 3, 5, 6, 8, 10, 11, 1 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "Eb", "F", "Gb", "Ab", "Bb", "Cb", "D" ],
+        "integers": [ 3, 5, 6, 8, 10, 11, 2 ]
+      }
+    },
+    {
+      "tonic": "E",
+      "integer": 4,
+      "major": {
+        "notes": [ "E", "F#", "G#", "A", "B", "C#", "D#" ],
+        "integers": [ 4, 6, 8, 9, 11, 1, 3 ]
+      },
+      "natural_minor": {
+        "notes": [ "E", "F#", "G", "A", "B", "C", "D" ],
+        "integers": [ 4, 6, 7, 9, 11, 0, 2 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "E", "F#", "G", "A", "B", "C", "D#" ],
+        "integers": [ 4, 6, 7, 9, 11, 0, 3 ]
+      }
+    },
+    {
+      "tonic": "F",
+      "integer": 5,
+      "major": {
+        "notes": [ "F", "G", "A", "Bb", "C", "D", "E" ],
+        "integers": [ 5, 7, 9, 10, 0, 2, 4 ]
+      },
+      "natural_minor": {
+        "notes": [ "F", "G", "Ab", "Bb", "C", "Db", "Eb" ],
+        "integers": [ 5, 7, 8, 10, 0, 1, 3 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "F", "G", "Ab", "Bb", "C", "Db", "E" ],
+        "integers": [ 5, 7, 8, 10, 0, 1, 4 ]
+      }
+    },
+    {
+      "tonic": "F#",
+      "integer": 6,
+      "major": {
+        "notes": [ "F#", "G#", "A#", "B", "C#", "D#", "E#" ],
+        "integers": [ 6, 8, 10, 11, 1, 3, 5 ]
+      },
+      "natural_minor": {
+        "notes": [ "F#", "G#", "A", "B", "C#", "D", "E" ],
+        "integers": [ 6, 8, 9, 11, 1, 2, 4 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "F#", "G#", "A", "B", "C#", "D", "E#" ],
+        "integers": [ 6, 8, 9, 11, 1, 2, 5 ]
+      }
+    },
+    {
+      "tonic": "Gb",
+      "integer": 6,
+      "major": {
+        "notes": [ "Gb", "Ab", "Bb", "Cb", "Db", "Eb", "F" ],
+        "integers": [ 6, 8, 10, 11, 1, 3, 5 ]
+      }
+    },
+    {
+      "tonic": "G",
+      "integer": 7,
+      "major": {
+        "notes": [ "G", "A", "B", "C", "D", "E", "F#" ],
+        "integers": [ 7, 9, 11, 0, 2, 4, 6 ]
+      },
+      "natural_minor": {
+        "notes": [ "G", "A", "Bb", "C", "D", "Eb", "F" ],
+        "integers": [ 7, 9, 10, 0, 2, 3, 5 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "G", "A", "Bb", "C", "D", "Eb", "F#" ],
+        "integers": [ 7, 9, 10, 0, 2, 3, 6 ]
+      }
+    },
+    {
+      "tonic": "G#",
+      "integer": 8,
+      "natural_minor": {
+        "notes": [ "G#", "A#", "B", "C#", "D#", "E", "F#" ],
+        "integers": [ 8, 10, 11, 1, 3, 4, 6 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "G#", "A#", "B", "C#", "D#", "E", "F##" ],
+        "integers": [ 8, 10, 11, 1, 3, 4, 7 ]
+      }
+    },
+    {
+      "tonic": "Ab",
+      "integer": 8,
+      "major": {
+        "notes": [ "Ab", "Bb", "C", "Db", "Eb", "F", "G" ],
+        "integers": [ 8, 10, 0, 1, 3, 5, 7 ]
+      },
+      "natural_minor": {
+        "notes": [ "Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb" ],
+        "integers": [ 8, 10, 11, 1, 3, 4, 6 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "Ab", "Bb", "Cb", "Db", "Eb", "Fb", "G" ],
+        "integers": [ 8, 10, 11, 1, 3, 4, 7 ]
+      }
+    },
+    {
+      "tonic": "A",
+      "integer": 9,
+      "major": {
+        "notes": [ "A", "B", "C#", "D", "E", "F#", "G#" ],
+        "integers": [ 9, 11, 1, 2, 4, 6, 8 ]
+      },
+      "natural_minor": {
+        "notes": [ "A", "B", "C", "D", "E", "F", "G" ],
+        "integers": [ 9, 11, 0, 2, 4, 5, 7 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "A", "B", "C", "D", "E", "F", "G#" ],
+        "integers": [ 9, 11, 0, 2, 4, 5, 8 ]
+      }
+    },
+    {
+      "tonic": "A#",
+      "integer": 10,
+      "natural_minor": {
+        "notes": [ "A#", "B#", "C#", "D#", "E#", "F#", "G#" ],
+        "integers": [ 10, 0, 1, 3, 5, 6, 8 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "A#", "B#", "C#", "D#", "E#", "F#", "G##" ],
+        "integers": [ 10, 0, 1, 3, 5, 6, 9 ]
+      }
+    },
+    {
+      "tonic": "Bb",
+      "integer": 10,
+      "major": {
+        "notes": [ "Bb", "C", "D", "Eb", "F", "G", "A" ],
+        "integers": [ 10, 0, 2, 3, 5, 7, 9 ]
+      },
+      "natural_minor": {
+        "notes": [ "Bb", "C", "Db", "Eb", "F", "Gb", "Ab" ],
+        "integers": [ 10, 0, 1, 3, 5, 6, 8 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "Bb", "C", "Db", "Eb", "F", "Gb", "A" ],
+        "integers": [ 10, 0, 1, 3, 5, 6, 9 ]
+      }
+    },
+    {
+      "tonic": "B",
+      "integer": 11,
+      "major": {
+        "notes": [ "B", "C#", "D#", "E", "F#", "G#", "A#" ],
+        "integers": [ 11, 1, 3, 4, 6, 8, 10 ]
+      },
+      "natural_minor": {
+        "notes": [ "B", "C#", "D", "E", "F#", "G", "A" ],
+        "integers": [ 11, 1, 2, 4, 6, 7, 9 ]
+      },
+      "harmonic_minor": {
+        "notes": [ "B", "C#", "D", "E", "F#", "G", "A#" ],
+        "integers": [ 11, 1, 2, 4, 6, 7, 10 ]
+      }
+    },
+    {
+      "tonic": "Cb",
+      "integer": 11,
+      "major": {
+        "notes": [ "Cb", "Db", "Eb", "Fb", "Gb", "Ab", "Bb" ],
+        "integers": [ 11, 1, 3, 4, 6, 8, 10 ]
+      }
+    }
+  ],
+  "intervals": [
+    {
+      "name": "Perfect Unison",
+      "abbreviation": "P1",
+      "semitones": 0
+    },
+    {
+      "name": "Minor Second",
+      "abbreviation": "m2",
+      "semitones": 1
+    },
+    {
+      "name": "Major Second",
+      "abbreviation": "M2",
+      "semitones": 2
+    },
+    {
+      "name": "Minor Third",
+      "abbreviation": "m3",
+      "semitones": 3
+    },
+    {
+      "name": "Major Third",
+      "abbreviation": "M3",
+      "semitones": 4
+    },
+    {
+      "name": "Perfect Fourth",
+      "abbreviation": "P4",
+      "semitones": 5
+    },
+    {
+      "name": "Tritone",
+      "abbreviation": "TT",
+      "semitones": 6
+    },
+    {
+      "name": "Perfect Fifth",
+      "abbreviation": "P5",
+      "semitones": 7
+    },
+    {
+      "name": "Minor Sixth",
+      "abbreviation": "m6",
+      "semitones": 8
+    },
+    {
+      "name": "Major Sixth",
+      "abbreviation": "M6",
+      "semitones": 9
+    },
+    {
+      "name": "Minor Seventh",
+      "abbreviation": "m7",
+      "semitones": 10
+    },
+    {
+      "name": "Major Seventh",
+      "abbreviation": "M7",
+      "semitones": 11
+    },
+    {
+      "name": "Perfect Octave",
+      "abbreviation": "P8",
+      "semitones": 12
+    }
+  ],
+  "nondiatonic_scales": [
+    {
+      "name": "octatonic0",
+      "integers": [ 0, 1, 3, 4, 6, 7, 9, 10 ]
+    },
+    {
+      "name": "octatonic1",
+      "integers": [ 1, 2, 4, 5, 7, 8, 10, 11 ]
+    },
+    {
+      "name": "octatonic2",
+      "integers": [ 2, 3, 5, 6, 8, 9, 11, 0 ]
+    },
+    {
+      "name": "chromatic",
+      "integers": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+    },
+    {
+      "name": "whole_tone0",
+      "integers": [ 0, 2, 4, 6, 8, 10 ]
+    },
+    {
+      "name": "whole_tone1",
+      "integers": [ 1, 3, 5, 7, 9, 11 ]
+    }
+  ]
+}

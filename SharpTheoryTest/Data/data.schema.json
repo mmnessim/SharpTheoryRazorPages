@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "description": {
+      "properties": {
+        "author": { "type": "string" },
+        "description": { "type": "string" },
+        "title": { "type": "string" },
+        "version": { "type": "string" }
+      },
+      "required": [ "title", "version", "author", "description" ],
+      "type": "object"
+    },
+    "integers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "integer": { "type": "integer" },
+          "names": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": [ "integer", "names" ]
+      }
+    },
+    "keys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "mode": { "type": "string" },
+          "integer": { "type": "integer" },
+          "sharps": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "flats": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "num_sharps": { "type": "integer" },
+          "num_flats": { "type": "integer" },
+          "relative": { "type": "string" },
+          "enharmonic": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": [ "name", "mode", "integer", "sharps", "flats", "num_sharps", "num_flats", "relative" ]
+      }
+    },
+    "scales": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tonic": { "type": "string" },
+          "integer": { "type": "integer" },
+          "major": {
+            "type": "object",
+            "properties": {
+              "notes": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "integers": {
+                "type": "array",
+                "items": { "type": "integer" }
+              }
+            },
+            "required": [ "notes", "integers" ]
+          },
+          "natural_minor": {
+            "type": "object",
+            "properties": {
+              "notes": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "integers": {
+                "type": "array",
+                "items": { "type": "integer" }
+              }
+            },
+            "required": [ "notes", "integers" ]
+          },
+          "harmonic_minor": {
+            "type": "object",
+            "properties": {
+              "notes": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "integers": {
+                "type": "array",
+                "items": { "type": "integer" }
+              }
+            },
+            "required": [ "notes", "integers" ]
+          }
+        },
+        "required": [ "tonic", "integer" ]
+      }
+    },
+    "intervals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "abbreviation": { "type": "string" },
+          "semitones": { "type": "integer" }
+        },
+        "required": [ "name", "abbreviation", "semitones" ]
+      }
+    },
+    "nondiatonic_scales": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "integers": {
+            "type": "array",
+            "items": { "type": "integer" }
+          }
+        },
+        "required": [ "name", "integers" ]
+      }
+    }
+  },
+  "required": [ "description", "integers", "keys", "scales", "intervals", "nondiatonic_scales" ],
+  "title": "Sharp Theory Data",
+  "type": "object"
+}
