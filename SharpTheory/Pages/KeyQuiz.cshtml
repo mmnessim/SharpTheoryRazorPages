@@ -4,6 +4,28 @@
 <div class="staff-background">
 @if (Model.Key != null && Model.NumSharps != null)
 {
+    <div class="d-flex gap-2 mb-3" >
+        <form method="get" asp-page-handler="">
+            <input type="hidden" name="OnlySharps" value="true" />
+            <input type="hidden" name="OnlyFlats" value="false" />
+            <button type="submit" class="btn btn-primary">Sharps Only</button>
+        </form>
+        <form method="get" asp-page-handler="">
+            <input type="hidden" name="OnlySharps" value="false" />
+            <input type="hidden" name="OnlyFlats" value="true" />
+            <button type="submit" class="btn btn-primary">Flats Only</button>
+        </form>
+        <form method="get" asp-page-handler="">
+            <input type="hidden" name="OnlySharps" value="false" />
+            <input type="hidden" name="OnlyFlats" value="false" />
+            <button type="submit" class="btn btn-primary">All Keys</button>
+        </form>
+     </div>
+        @if (Model.OnlySharps)
+        {
+            <h1>ONLY SHARPS</h1>
+        }
+
     <h1>How many sharps or flats does @Model.Key.Name have?</h1>
     <form method="post">
         <input type="hidden" asp-for="SelectedKeyName" />
