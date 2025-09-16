@@ -31,6 +31,7 @@
                 }
             }
         </ul>
+        <p>@Model.Key.NumSharps Sharps | @Model.Key.NumFlats Flats | Semitone @Model.Key.Integer </p>
         @if (Model.Scale != null && Model.Key.Mode == "major")
         {
             <table class="table table-bordered w-auto">
@@ -88,11 +89,8 @@
                 </tbody>
             </table>
         }
-        @if (Model.Scale != null && Model.Key.Mode == "minor")
+        @if (Model.Scale != null && Model.Key.Mode == "minor" && Model.NatMinor != null)
         {
-            <h1 style="background-color:red;">
-            Needs reworking: III chord should have flatted 7th scale degree. Will likely need to have variables for both natural and harmonic minor
-            </h1>
             <table class="table table-bordered w-auto">
                 <thead>
                     <tr>
@@ -119,7 +117,7 @@
                         <td>III</td>
                         <td>@Model.Scale.Notes[2]</td>
                         <td>@Model.Scale.Notes[4]</td>
-                        <td>@Model.Scale.Notes[6]</td>
+                        <td>@Model.NatMinor.Notes[6]</td>
                     </tr>
                     <tr>
                         <td>iv</td>
@@ -138,6 +136,12 @@
                         <td>@Model.Scale.Notes[5]</td>
                         <td>@Model.Scale.Notes[0]</td>
                         <td>@Model.Scale.Notes[2]</td>
+                    </tr>
+                    <tr>
+                        <td>VII</td>
+                        <td>@Model.NatMinor.Notes[6]</td>
+                        <td>@Model.Scale.Notes[1]</td>
+                        <td>@Model.Scale.Notes[3]</td>
                     </tr>
                     <tr>
                         <td>vii&deg</td>

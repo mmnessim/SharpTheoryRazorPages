@@ -11,6 +11,7 @@ namespace SharpTheory.Pages
 
         public TheoryKey? Key { get; set; }
         public TheoryScaleType? Scale { get; set; }
+        public TheoryScaleType? NatMinor { get; set; }
         public void OnGet(string id)
         {
             var json = System.IO.File.ReadAllText("Data/data.json");
@@ -27,6 +28,7 @@ namespace SharpTheory.Pages
             } else
             {
                 Scale = scales?.HarmonicMinor;
+                NatMinor = scales?.NaturalMinor;
             }
 
         }

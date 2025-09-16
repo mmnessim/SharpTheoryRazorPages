@@ -1,0 +1,16 @@
+﻿@page "/quiz"
+@model SharpTheory.Pages.KeyQuizModel
+
+@if (Model.Key != null && Model.NumSharps != null)
+{
+    <h1>How many sharps or flats does @Model.Key.Name have?</h1>
+    <form method="post">
+        <input type="hidden" asp-for="SelectedKeyName" />
+        <input type="number" asp-for="UserAnswer" class="form-control" />
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+    @if (Model.ResultMessage != null)
+    {
+        <div class="mt-3">@Model.ResultMessage</div>
+    }
+}
