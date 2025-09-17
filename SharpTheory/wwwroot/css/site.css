@@ -49,6 +49,15 @@ body {
     background-color: var(--primary) !important;
 }
 
+.btn-danger {
+    background-color: var(--accent) !important;
+    border-color: var(--primary) !important;
+}
+
+.btn-danger:hover {
+    background-color: var(--primary) !important;
+}
+
 /* Navbar */
 .navbar, .navbar-brand, .nav-link, .navheader {
     background-color: var(--primary) !important;

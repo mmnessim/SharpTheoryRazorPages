@@ -21,9 +21,15 @@
             <button type="submit" class="btn btn-primary">All Keys</button>
         </form>
      </div>
-        @if (Model.OnlySharps)
+        @if (Model.RightCount != 0 || Model.WrongCount != 0)
         {
-            <h1>ONLY SHARPS</h1>
+            <div class="d-flex gap-2 align-items-center">
+                <h4>@(Model.RightCount)/@(Model.RightCount + Model.WrongCount) Correct answers</h4>
+                <form method="post" asp-page-handler="Clear">
+                    <button type="submit" class="btn btn-danger mt-2">Clear Score</button>
+                </form>
+            </div>
+            
         }
 
     <h1>How many sharps or flats does @Model.Key.Name have?</h1>

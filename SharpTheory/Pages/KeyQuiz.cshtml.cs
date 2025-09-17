@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SharpTheory.Models;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SharpTheory.Pages
 {
@@ -25,6 +26,18 @@ namespace SharpTheory.Pages
         public bool OnlySharps { get; set; } = false;
         [BindProperty(SupportsGet = true)]
         public bool OnlyFlats { get; set; } = false;
+
+        public int RightCount
+        {
+            get => HttpContext.Session.GetInt32("RightCount") ?? 0;
+            set => HttpContext.Session.SetInt32("RightCount", value);
+        }
+
+        public int WrongCount
+        {
+            get => HttpContext.Session.GetInt32("WrongCount") ?? 0;
+            set => HttpContext.Session.SetInt32("WrongCount", value);
+        }
 
         public void OnGet()
         {
@@ -68,14 +81,28 @@ namespace SharpTheory.Pages
 
             if (UserSharps.HasValue && Key != null && UserFlats.HasValue)
             {
-                ResultMessage = UserSharps == NumSharps && UserFlats == NumFlats
-                    ? $"Correct! {NumSharps} Sharps and {NumFlats} Flats"
-                    : $"Incorrect. The correct answer is {NumSharps} sharps and {NumFlats} flats.";
+                if (UserSharps == NumSharps && UserFlats == NumFlats)
+                {
+                    ResultMessage = $"Correct! {NumSharps} Sharps and {NumFlats} Flats";
+                    RightCount++;
+                }
+                else
+                {
+                    ResultMessage = $"Incorrect. The correct answer is {NumSharps} sharps and {NumFlats} flats.";
+                    WrongCount++;
+                }
             }
         }
 
         public IActionResult OnPostNewQuestion()
         {
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostClear()
+        {
+            RightCount = 0;
+            WrongCount = 0;
             return RedirectToPage();
         }
     }
