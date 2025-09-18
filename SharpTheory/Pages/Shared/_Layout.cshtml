@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SharpTheory</title>
     <script type="importmap"></script>
+    @{
+        var isCodeServer = Environment.GetEnvironmentVariable("CODESERVER") == "true";
+    }
+    @if (isCodeServer)
+    {
+        <link rel="stylesheet" href="/proxy/5023/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/proxy/5023/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="/proxy/5023/SharpTheory.styles.css" asp-append-version="true" />
+    }
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SharpTheory.styles.css" asp-append-version="true" />
