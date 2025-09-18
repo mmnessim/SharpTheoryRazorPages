@@ -49,6 +49,10 @@ body {
     background-color: var(--primary) !important;
 }
 
+.btn-active {
+    background-color: var(--accent) !important;
+}
+
 .btn-danger {
     background-color: var(--accent) !important;
     border-color: var(--primary) !important;

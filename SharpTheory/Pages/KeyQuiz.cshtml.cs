@@ -41,6 +41,16 @@ namespace SharpTheory.Pages
 
         public void OnGet()
         {
+            if (!Request.Query.ContainsKey("OnlySharps"))
+            {
+                OnlySharps = HttpContext.Session.GetInt32("OnlySharps") == 1;
+                OnlyFlats = HttpContext.Session.GetInt32("OnlyFlats") == 1;
+            } else
+            {
+                HttpContext.Session.SetInt32("OnlySharps", OnlySharps ? 1 : 0);
+                HttpContext.Session.SetInt32("OnlyFlats", OnlyFlats ? 1 : 0);
+            }
+                
             var json = System.IO.File.ReadAllText("Data/data.json");
             var root = JsonSerializer.Deserialize<TheoryRoot>(json);
             if (OnlySharps)
@@ -79,19 +89,20 @@ namespace SharpTheory.Pages
                 NumFlats = Key?.NumFlats ?? 0;
             }
 
-            if (UserSharps.HasValue && Key != null && UserFlats.HasValue)
+            UserSharps ??= 0;
+            UserFlats ??= 0;
+
+            if (UserSharps == NumSharps && UserFlats == NumFlats)
             {
-                if (UserSharps == NumSharps && UserFlats == NumFlats)
-                {
-                    ResultMessage = $"Correct! {NumSharps} Sharps and {NumFlats} Flats";
-                    RightCount++;
-                }
-                else
-                {
-                    ResultMessage = $"Incorrect. The correct answer is {NumSharps} sharps and {NumFlats} flats.";
-                    WrongCount++;
-                }
+                ResultMessage = $"Correct! {NumSharps} Sharps and {NumFlats} Flats";
+                RightCount++;
             }
+            else
+            {
+                ResultMessage = $"Incorrect. The correct answer is {NumSharps} sharps and {NumFlats} flats.";
+                WrongCount++;
+            }
+            
         }
 
         public IActionResult OnPostNewQuestion()

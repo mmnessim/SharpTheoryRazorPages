@@ -2,25 +2,31 @@
 @model SharpTheory.Pages.KeyQuizModel
 
 <div class="staff-background">
-@if (Model.Key != null && Model.NumSharps != null)
-{
-    <div class="d-flex gap-2 mb-3" >
-        <form method="get" asp-page-handler="">
-            <input type="hidden" name="OnlySharps" value="true" />
-            <input type="hidden" name="OnlyFlats" value="false" />
-            <button type="submit" class="btn btn-primary">Sharps Only</button>
-        </form>
-        <form method="get" asp-page-handler="">
-            <input type="hidden" name="OnlySharps" value="false" />
-            <input type="hidden" name="OnlyFlats" value="true" />
-            <button type="submit" class="btn btn-primary">Flats Only</button>
-        </form>
-        <form method="get" asp-page-handler="">
-            <input type="hidden" name="OnlySharps" value="false" />
-            <input type="hidden" name="OnlyFlats" value="false" />
-            <button type="submit" class="btn btn-primary">All Keys</button>
-        </form>
-     </div>
+    @if (Model.Key != null && Model.NumSharps != null)
+    {
+        <div class="d-flex gap-2 mb-3">
+            <form method="get" asp-page-handler="">
+                <input type="hidden" name="OnlySharps" value="true" />
+                <input type="hidden" name="OnlyFlats" value="false" />
+                <button type="submit"
+                        class="btn btn-primary @(Model.OnlySharps && !Model.OnlyFlats ? "btn-active" : "")">
+                    Sharps Only
+                </button>
+            </form>
+            <form method="get" asp-page-handler="">
+                <input type="hidden" name="OnlySharps" value="false" />
+                <input type="hidden" name="OnlyFlats" value="true" />
+                <button type="submit"
+                        class="btn btn-primary @(Model.OnlyFlats && !Model.OnlySharps ? "btn-active" : "")">
+                    Flats Only
+                </button>
+            </form>
+            <form method="get" asp-page-handler="">
+                <input type="hidden" name="OnlySharps" value="false" />
+                <input type="hidden" name="OnlyFlats" value="false" />
+                <button type="submit" class="btn btn-primary @(!Model.OnlySharps && !Model.OnlyFlats ? "btn-active" : "")">All Keys</button>
+            </form>
+        </div>
         @if (Model.RightCount != 0 || Model.WrongCount != 0)
         {
             <div class="d-flex gap-2 align-items-center">
@@ -29,28 +35,34 @@
                     <button type="submit" class="btn btn-danger mt-2">Clear Score</button>
                 </form>
             </div>
-            
+
         }
 
-    <h1>How many sharps or flats does @Model.Key.Name have?</h1>
-    <form method="post">
-        <input type="hidden" asp-for="SelectedKeyName" />
-        <div class="mb-2">
-            <label asp-for="UserSharps" class="form-label">Sharps</label>
-            <input type="number" asp-for="UserSharps" class="form-control" />
-        </div>
-        <div class="mb-2">
-            <label asp-for="UserFlats" class="form-label">Flats</label>
-            <input type="number" asp-for="UserFlats" class="form-control" />
-        </div>
-        <button type="submit" class="btn btn-primary mt-2">Submit</button>
-    </form>
-    <form method="post" asp-page-handler="NewQuestion">
-        <button type="submit" class="btn btn-secondary mt-2">New Question</button>
-    </form>
-    @if (Model.ResultMessage != null)
-    {
-        <div class="mt-3">@Model.ResultMessage</div>
+        <h1>How many sharps or flats does @Model.Key.Name have?</h1>
+        <form method="post">
+            <input type="hidden" asp-for="SelectedKeyName" />
+            <div class="mb-2">
+                <label asp-for="UserSharps" class="form-label">Sharps</label>
+                <input type="number" asp-for="UserSharps" class="form-control" />
+            </div>
+            <div class="mb-2">
+                <label asp-for="UserFlats" class="form-label">Flats</label>
+                <input type="number" asp-for="UserFlats" class="form-control" />
+            </div>
+            @if (Model.ResultMessage == null)
+            {
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            }
+
+        </form>
+
+        <form method="post" asp-page-handler="NewQuestion">
+            <button type="submit" class="btn btn-secondary mt-2">New Question</button>
+        </form>
+
+        @if (Model.ResultMessage != null)
+        {
+            <div class="mt-3">@Model.ResultMessage</div>
+        }
     }
-}
 </div>
