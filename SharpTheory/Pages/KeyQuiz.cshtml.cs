@@ -8,25 +8,32 @@ namespace SharpTheory.Pages
 {
     public class KeyQuizModel : PageModel
     {
+        // Variabels for selected key
         private List<TheoryKey>? KeyPool { get; set; }
         public TheoryKey? Key { get; set; }
         public int? NumSharps { get; set; }
         public int? NumFlats { get; set; }
 
+        // For key persistence on post requests
         [BindProperty]
         public string? SelectedKeyName { get; set; }
 
+        // User inputs
         [BindProperty]
         public int? UserSharps { get; set; }
         [BindProperty]
         public int? UserFlats { get; set; }
+        
+        // Correct/incorrect feedback
         public string? ResultMessage { get; set; }
 
+        // Flags to change KeyPool
         [BindProperty(SupportsGet = true)]
         public bool OnlySharps { get; set; } = false;
         [BindProperty(SupportsGet = true)]
         public bool OnlyFlats { get; set; } = false;
 
+        // Answer history
         public int RightCount
         {
             get => HttpContext.Session.GetInt32("RightCount") ?? 0;
@@ -39,6 +46,13 @@ namespace SharpTheory.Pages
             set => HttpContext.Session.SetInt32("WrongCount", value);
         }
 
+        /// <summary>
+        /// Handles GET requests by selecting a random key to be rendered
+        /// </summary>
+        /// <remarks>
+        /// First, OnGet() checks querystring for flags and sets flags accordingly. Then it reads data.json 
+        /// sets KeyPool according to flags. Finally, it selects a random key and assigns it.
+        /// </remarks>
         public void OnGet()
         {
             if (!Request.Query.ContainsKey("OnlySharps"))
@@ -77,6 +91,14 @@ namespace SharpTheory.Pages
             
         }
 
+        /// <summary>
+        /// Handles POST requests by validating user's submitted key and updating ResultMessage
+        /// </summary>
+        /// <remarks>
+        /// Reads data.json and ensures that Key is set correctly.SelectedKey is bound to a hidden input 
+        /// on KeyQuiz.cshtml that ensures persistence. UserSharps/UserFlats default to 0. Result message is
+        /// set accordingly.
+        /// </remarks>
         public void OnPost()
         {
             var json = System.IO.File.ReadAllText("Data/data.json");
@@ -105,11 +127,19 @@ namespace SharpTheory.Pages
             
         }
 
+        /// <summary>
+        /// Refreshes page for a new question
+        /// </summary>
+        /// /// <returns>An <see cref="IActionResult"/> that redirects to the current page.</returns>
         public IActionResult OnPostNewQuestion()
         {
             return RedirectToPage();
         }
 
+        /// <summary>
+        /// Resets the counters for correct and incorrect answers to zero and redirects to the current page.
+        /// </summary>
+        /// <returns>An <see cref="IActionResult"/> that redirects to the current page.</returns>
         public IActionResult OnPostClear()
         {
             RightCount = 0;
