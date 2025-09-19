@@ -84,3 +84,7 @@ body {
     padding: 2rem;
     border-radius: 1rem;
 }
+
+.included {
+    background-color: red !important;
+}
