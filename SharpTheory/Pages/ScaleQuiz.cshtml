@@ -6,9 +6,10 @@
     <div class="scale-container">
         @foreach (var I in Model.Integers)
         {
-
             <button class="btn btn-secondary m-1 
-                    @(I.Integer == Model.Scale.Integer ? "included" : "")">
+                    @(I.Integer == Model.Scale.Integer ? "included" : "")
+                    @(Model.Scale.Major != null && Model.Scale.Major.Notes.Contains(I.Names[0]) ? "selected" : "")
+                    ">
                 @I.Names[0]@(I.Names.Count > 1 ? " / " + I.Names[1] : "")
             </button>
         }

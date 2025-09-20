@@ -1,0 +1,15 @@
+{
+    "name": "SharpTheoryRazorPages Dev Container",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-azuretools.vscode-docker"
+    ],
+    "forwardPorts": [5000, 5001],
+    "postCreateCommand": "dotnet restore"
+}

@@ -20,7 +20,8 @@ namespace SharpTheory.Pages
             Integers = root.Integers.ToList();
 
             var random = new Random();
-            Scale = root.Scales[random.Next(root.Scales.Count)];
+            var majorScales = root.Scales.Where(s => s.Major != null).ToList();
+            Scale = majorScales[random.Next(majorScales.Count)];
         }
     }
 }

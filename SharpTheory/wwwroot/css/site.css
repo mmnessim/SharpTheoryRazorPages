@@ -88,3 +88,7 @@ body {
 .included {
     background-color: red !important;
 }
+
+.selected {
+    background-color: green;
+}
