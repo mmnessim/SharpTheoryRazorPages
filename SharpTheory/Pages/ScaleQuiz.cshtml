@@ -1,15 +1,22 @@
 ﻿@page "/scalequiz"
 @model SharpTheory.Pages.ScaleQuizModel
+<h1>
+    UNDER CONSTRUCTION
+</h1>
 
 @if (Model.Integers != null && Model.Scale != null)
 {
     <div class="scale-container">
         @foreach (var I in Model.Integers)
         {
-            <button class="btn btn-secondary m-1 
+            <button class="btn btn-secondary m-1
                     @(I.Integer == Model.Scale.Integer ? "included" : "")
-                    @(Model.Scale.Major != null && Model.Scale.Major.Notes.Contains(I.Names[0]) ? "selected" : "")
-                    ">
+                    @(Model.Scale.Major != null &&
+                        (
+                            Model.Scale.Major.Notes.Contains(I.Names[0]) ||
+                            (I.Names.Count > 1 && Model.Scale.Major.Notes.Contains(I.Names[1]))
+                            )
+                            ? "selected" : "")">
                 @I.Names[0]@(I.Names.Count > 1 ? " / " + I.Names[1] : "")
             </button>
         }
@@ -19,7 +26,7 @@
 @if (Model.Scale != null)
 {
     <p>
-        @Model.Scale.Tonic 
+        @Model.Scale.Tonic
     </p>
     @if (Model.Scale.Major != null)
     {

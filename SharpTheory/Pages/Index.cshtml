@@ -3,34 +3,63 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<div class="staff-background">
+    @if (Model.Description != null)
+    {
+        <div class="text-center">
+            <h2>@Model.Description.Title</h2>
+            <p>@Model.Description.Description</p>
+            <p>Author: @Model.Description.Author</p>
+        </div>
+    } 
 
-@if (Model.Description != null)
-{
-    <div class="text-center description">
-        <h2>@Model.Description.Title</h2>
-        <p>@Model.Description.Description</p>
-        <p>Author: @Model.Description.Author</p>
-        <p>Version: @Model.Description.Version</p>
-    </div>
-} 
-
-<div class="text-center">
-    <p>SharpTheory is a Music Theory website/API written in C# (hence the name!). There are three main goals of this site</p>
-    <div>
-        <ul style="list-style: none;">
-            <li>1. Learn C# for Web Development</li>
-            <li>2. Create a usable music theory API for other developers</li>
-            <li>3. Create a demo site to show some possible applications of the API</li>
-        </ul>
-    </div>
-    <div>
-        <h3>Todos:</h3>
-        <ol>
-            <li>Sort out Swagger/OpenAPI Documentation</li>
-            <li>Implement a Scales quiz?</li>
-            <li>Intervals quiz?</li>
-            <li>Terms of use for the API</li>
-            <li>Tests!</li>
-        </ol>
+    <div class="text-center">
+        <p>
+            SharpTheory is a Music Theory website/API written in C# (hence the name!). 
+            This project is both a chance for me to learn C# for web development and to provide a potentially 
+            useful public API.  
+        </p>
+        <p>
+            The full source code for this site is available on 
+            <a class="plain-link" href="https://github.com/mmnessim/SharpTheoryRazorPages" target="_blank">
+                Github. 
+            </a>
+            Additionally, the JSON file containing the raw music theory data is available in its own 
+            <a class="plain-link" href="https://github.com/mmnessim/music_theory_json" target="_blank">
+                repository.
+            </a>
+            This project is still a bit of a work in progress, so feel free to contact me if you encounter any bugs or issues
+        </p>
+        <div>
+            <h2>
+                <a class="plain-link" asp-area="" asp-page="/KeyQuiz">
+                    Key Quiz
+                </a>
+            </h2>
+            <p>
+                One possible use of this API is to create quizzes or other practice content. The Key Quiz page is a simple
+                quiz in which you enter the number of sharps or flats in the given key. 
+            </p>
+            <h2>
+                <a class="plain-link" asp-area="" asp-page="/KeyReference">
+                    Key Reference    
+                </a>
+            </h2>
+            <p>
+                The API could also be used to generate and display various information about diatonic keys.     
+            </p>
+        </div>
+        <!--
+            <div>
+                <h3>Todos:</h3>
+                <ol>
+                    <li>Sort out Swagger/OpenAPI Documentation</li>
+                    <li>Implement a Scales quiz?</li>
+                    <li>Intervals quiz?</li>
+                    <li>Terms of use for the API</li>
+                    <li>Tests!</li>
+                </ol>
+            </div>
+        -->
     </div>
 </div>

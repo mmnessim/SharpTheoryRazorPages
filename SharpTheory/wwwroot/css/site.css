@@ -92,3 +92,7 @@ body {
 .selected {
     background-color: green;
 }
+
+.plain-link {
+    color: var(--secondary);
+}
