@@ -8,6 +8,7 @@ namespace SharpTheory.Pages
     public class ScaleQuizModel : PageModel
     {
         public List<TheoryInteger>? Integers { get; set; }
+        public List<int> RawInts { get; set; } = [];
         public TheoryScale? Scale { get; set; }
         public void OnGet()
         {
@@ -22,6 +23,13 @@ namespace SharpTheory.Pages
             var random = new Random();
             var majorScales = root.Scales.Where(s => s.Major != null).ToList();
             Scale = majorScales[random.Next(majorScales.Count)];
+            if (Scale != null && Scale.Major != null)
+            {
+                foreach (var i in Scale.Major.Integers)
+                {
+                    RawInts.Add(i);
+                }
+            }  
         }
     }
 }

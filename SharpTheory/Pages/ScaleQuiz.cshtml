@@ -3,26 +3,40 @@
 <h1>
     UNDER CONSTRUCTION
 </h1>
-
-<div class="piano">
-  <div class="white-key" data-note=0></div>
-  <div class="white-key" data-note=2></div>
-  <div class="white-key" data-note=4></div>
-  <div class="white-key" data-note=5></div>
-  <div class="white-key" data-note=7></div>
-  <div class="white-key" data-note=9></div>
-  <div class="white-key" data-note=11></div>
-    <div class="black-keys">
-        <div class="black-key" style="left: 35px;" data-note=1></div>
-        <div class="black-key" style="left: 85px;" data-note=3></div>
-        <div class="black-key" style="left: 185px;" data-note=6></div>
-        <div class="black-key" style="left: 235px;" data-note=8></div>
-        <div class="black-key" style="left: 285px;" data-note=10></div>
-  </div>
-</div>
+@{
+    var whiteKeyNotes = new[] { 0, 2, 4, 5, 7, 9, 11 };
+    var blackKeyOffsets = new Dictionary<int, int>
+    {
+        { 1, 35 },
+        { 3, 85 },
+        { 6, 185 },
+        { 8, 235 },
+        { 10, 285 }
+    };
+}
 
 @if (Model.Integers != null && Model.Scale != null)
 {
+    <div class="piano">
+        @foreach (var note in whiteKeyNotes)
+        {
+            <div class="white-key 
+                @(Model.RawInts.Contains(note) ? "included-in-key" : "")
+                @(Model.RawInts[0] == note ? "tonic-key" : "")"
+                data-note="@note"></div>
+        }
+        <div class="black-keys">
+            @foreach (var kvp in blackKeyOffsets)
+            {
+                <div class="black-key 
+                     @(Model.RawInts.Contains(kvp.Key) ? "included-in-key" : "")
+                     @(Model.RawInts[0] == kvp.Key ? "tonic-key" : "")"
+                     style="left: @($"{kvp.Value}px");"
+                     data-note="@kvp.Key"></div>
+            }
+        </div>
+    </div>
+
     <div class="scale-container">
         @foreach (var I in Model.Integers)
         {

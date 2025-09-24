@@ -34,4 +34,10 @@
 
 .included-in-key {
     background-color: orange !important;
+    border: 3px, solid, black;
+}
+
+.tonic-key {
+    background-color: blue !important;
+    border: 3px, solid, black;
 }
