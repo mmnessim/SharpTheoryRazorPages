@@ -22,7 +22,6 @@ namespace SharpTheory.Pages
         public TheoryKey? Key { get; set; }
         /// <summary>
         /// Gets or sets the number of sharps for the selected key.
-
         /// </summary>
         public int? NumSharps { get; set; }
         /// <summary>
