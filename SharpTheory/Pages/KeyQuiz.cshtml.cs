@@ -6,40 +6,80 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SharpTheory.Pages
 {
-    public class KeyQuizModel : PageModel
+    /// <summary>
+    /// PageModel for the Key Quiz page, handles quiz logic and user interactions.
+    /// </summary>
+        public class KeyQuizModel : PageModel
     {
         // Variabels for selected key
+        /// <summary>
+        /// Pool of keys to select from, filtered based on user preferences.
+        /// </summary>
         private List<TheoryKey>? KeyPool { get; set; }
+        /// <summary>
+        /// The currently selected key for the quiz.
+        /// </summary>
         public TheoryKey? Key { get; set; }
+        /// <summary>
+        /// Gets or sets the number of sharps for the selected key.
+
+        /// </summary>
         public int? NumSharps { get; set; }
+        /// <summary>
+        /// Gets or sets the number of flats for the selected key.
+        /// </summary>
         public int? NumFlats { get; set; }
 
-        // For key persistence on post requests
+        /// <summary>
+        /// Gets or sets the name of the selected key. This is bound to a hidden input to maintain state across requests.
+        /// </summary>
         [BindProperty]
         public string? SelectedKeyName { get; set; }
 
         // User inputs
+        /// <summary>
+        /// Gets or sets the number of sharps input by the user.
+        /// </summary>
         [BindProperty]
         public int? UserSharps { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of flats input by the user.
+        /// </summary>
         [BindProperty]
         public int? UserFlats { get; set; }
-        
-        // Correct/incorrect feedback
+
+        /// <summary>
+        /// Gets or sets the result message to be displayed after user submission.
+        /// </summary>
         public string? ResultMessage { get; set; }
 
         // Flags to change KeyPool
+        /// <summary>
+        /// Gets or sets sharps only flag for KeyPool.
+        /// </summary>
         [BindProperty(SupportsGet = true)]
         public bool OnlySharps { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets flats only flag for KeyPool.
+        /// </summary>
         [BindProperty(SupportsGet = true)]
         public bool OnlyFlats { get; set; } = false;
 
         // Answer history
+        /// <summary>
+        /// Gets or sets the count of correct answers, stored in session.
+        /// </summary>
         public int RightCount
         {
             get => HttpContext.Session.GetInt32("RightCount") ?? 0;
             set => HttpContext.Session.SetInt32("RightCount", value);
         }
 
+        /// <summary>
+        /// Gets or sets the count of incorrect answers, stored in session.
+        /// </summary>
         public int WrongCount
         {
             get => HttpContext.Session.GetInt32("WrongCount") ?? 0;
