@@ -17,23 +17,48 @@
 
 @if (Model.Integers != null && Model.Scale != null)
 {
-    <div class="piano">
-        @foreach (var note in whiteKeyNotes)
-        {
-            <div class="white-key 
-                @(Model.RawInts.Contains(note) ? "included-in-key" : "")
-                @(Model.RawInts[0] == note ? "tonic-key" : "")"
-                data-note="@note"></div>
-        }
-        <div class="black-keys">
-            @foreach (var kvp in blackKeyOffsets)
+    <div class="d-flex">
+        <div class="piano">
+            @foreach (var note in whiteKeyNotes)
             {
-                <div class="black-key 
-                     @(Model.RawInts.Contains(kvp.Key) ? "included-in-key" : "")
-                     @(Model.RawInts[0] == kvp.Key ? "tonic-key" : "")"
-                     style="left: @($"{kvp.Value}px");"
-                     data-note="@kvp.Key"></div>
+                <div class="white-key 
+                    @(Model.RawInts.Contains(note) ? "included-in-key" : "")
+                    @(Model.RawInts[0] == note ? "tonic-key" : "")
+                    @(Model.RawInts[4] == note ? "dominant-key" : "")     
+                "
+                    data-note="@note"></div>
             }
+            @foreach (var note in whiteKeyNotes)
+            {
+                <div class="white-key
+                    @(Model.RawInts.Contains(note) ? "included-in-key" : "")
+                    @(Model.RawInts[0] == note ? "tonic-key" : "")
+                    @(Model.RawInts[4] == note ? "dominant-key" : "")
+                "
+                     data-note="@note"></div>
+            }
+            <div class="black-keys">
+                @foreach (var kvp in blackKeyOffsets)
+                {
+                    <div class="black-key 
+                         @(Model.RawInts.Contains(kvp.Key) ? "included-in-key" : "")
+                         @(Model.RawInts[0] == kvp.Key ? "tonic-key" : "")
+                         @(Model.RawInts[4] == kvp.Key ? "dominant-key" : "")
+                "
+                         style="left: @($"{kvp.Value}px");"
+                         data-note="@kvp.Key"></div>
+                }
+                @foreach (var kvp in blackKeyOffsets)
+                {
+                    <div class="black-key
+                        @(Model.RawInts.Contains(kvp.Key) ? "included-in-key" : "")
+                        @(Model.RawInts[0] == kvp.Key ? "tonic-key" : "")
+                        @(Model.RawInts[4] == kvp.Key ? "dominant-key" : "")
+                "
+                         style="left: @($"{kvp.Value + 335}px");"
+                         data-note="@kvp.Key"></div>
+                }
+            </div>
         </div>
     </div>
 
