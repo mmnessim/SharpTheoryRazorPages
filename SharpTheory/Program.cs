@@ -19,6 +19,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSession();
 
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
