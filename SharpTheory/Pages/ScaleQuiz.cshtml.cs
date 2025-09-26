@@ -11,6 +11,7 @@ namespace SharpTheory.Pages
         public List<TheoryInteger>? Integers { get; set; }
         public List<int> RawInts { get; set; } = [];
         public TheoryScale? Scale { get; set; }
+        public bool ShowNotes { get; set; } = true;
 
         public ScaleQuizModel(ILogger<ScaleQuizModel> logger)
         {
