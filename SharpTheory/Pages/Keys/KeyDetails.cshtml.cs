@@ -1,13 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SharpTheory.Models;
+using SharpTheory.Services;
 using System.Text.Json;
 
 namespace SharpTheory.Pages
 {
     public class KeyDetailsModel : PageModel
     {
-
+        private readonly ILogger<IndexModel> _logger;
+        private readonly IAnalyticsService _analyticsService;
+        public KeyDetailsModel(ILogger<IndexModel> logger, IAnalyticsService analyticsService)
+        {
+            _logger = logger;
+            _analyticsService = analyticsService;
+        }
 
         public TheoryKey? Key { get; set; }
         public TheoryScaleType? Scale { get; set; }
@@ -25,12 +32,15 @@ namespace SharpTheory.Pages
             if (mode == "major")
             {
                 Scale = scales?.Major;
-            } else
+            }
+            else
             {
                 Scale = scales?.HarmonicMinor;
                 NatMinor = scales?.NaturalMinor;
             }
-
+            var now = DateTime.Now;
+            _logger.LogInformation("KeyDetails page loaded at {Time}", now);
+            _ = _analyticsService.SendEventAsync("KeyDetailsPageView");
         }
     }
 }

@@ -10,15 +10,13 @@ namespace SharpTheory.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly IHttpClientFactory _httpClientFactory;
         private readonly IAnalyticsService _analyticsService;
         public DateTime CurrentTime { get; set; }
         public TheoryDescription? Description { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IHttpClientFactory httpClientFactory, IAnalyticsService analyticsService)
+        public IndexModel(ILogger<IndexModel> logger, IAnalyticsService analyticsService)
         {
             _logger = logger;
-            _httpClientFactory = httpClientFactory;
             _analyticsService = analyticsService;
         }
 
