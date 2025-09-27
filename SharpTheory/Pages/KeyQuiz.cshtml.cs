@@ -1,16 +1,25 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SharpTheory.Models;
+using SharpTheory.Services;
 using System.Text.Json;
-using Microsoft.AspNetCore.Authorization;
 
 namespace SharpTheory.Pages
 {
     /// <summary>
     /// PageModel for the Key Quiz page, handles quiz logic and user interactions.
     /// </summary>
-        public class KeyQuizModel : PageModel
+    public class KeyQuizModel : PageModel
     {
+        private readonly ILogger<KeyQuizModel> _logger;
+        private readonly IAnalyticsService _analyticsService;
+
+        public KeyQuizModel(ILogger<KeyQuizModel> logger, IAnalyticsService analyticsService)
+        {
+            _logger = logger;
+            _analyticsService = analyticsService;
+        }
         // Variabels for selected key
         /// <summary>
         /// Pool of keys to select from, filtered based on user preferences.
@@ -98,12 +107,13 @@ namespace SharpTheory.Pages
             {
                 OnlySharps = HttpContext.Session.GetInt32("OnlySharps") == 1;
                 OnlyFlats = HttpContext.Session.GetInt32("OnlyFlats") == 1;
-            } else
+            }
+            else
             {
                 HttpContext.Session.SetInt32("OnlySharps", OnlySharps ? 1 : 0);
                 HttpContext.Session.SetInt32("OnlyFlats", OnlyFlats ? 1 : 0);
             }
-                
+
             var json = System.IO.File.ReadAllText("Data/data.json");
             var root = JsonSerializer.Deserialize<TheoryRoot>(json);
             if (OnlySharps)
@@ -127,7 +137,8 @@ namespace SharpTheory.Pages
                 NumFlats = Key?.NumFlats;
                 SelectedKeyName = Key?.Name;
             }
-            
+            _logger.LogInformation("KeyQuiz page loaded at {Time}", DateTime.Now);
+            _analyticsService.SendEventAsync("KeyQuizPageView");
         }
 
         /// <summary>
@@ -163,7 +174,8 @@ namespace SharpTheory.Pages
                 ResultMessage = $"Incorrect. The correct answer is {NumSharps} sharps and {NumFlats} flats.";
                 WrongCount++;
             }
-            
+            _logger.LogInformation("KeyQuiz post request loaded at {Time}", DateTime.Now);
+            _analyticsService.SendEventAsync("Post");
         }
 
         /// <summary>

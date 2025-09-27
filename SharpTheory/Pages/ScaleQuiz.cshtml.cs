@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SharpTheory.Models;
+using SharpTheory.Services;
 using System.Text.Json;
 
 namespace SharpTheory.Pages
@@ -8,14 +9,16 @@ namespace SharpTheory.Pages
     public class ScaleQuizModel : PageModel
     {
         private readonly ILogger<ScaleQuizModel> _logger;
+        private readonly IAnalyticsService _analyticsService;
         public List<TheoryInteger>? Integers { get; set; }
         public List<int> RawInts { get; set; } = [];
         public TheoryScale? Scale { get; set; }
         public bool ShowNotes { get; set; } = true;
 
-        public ScaleQuizModel(ILogger<ScaleQuizModel> logger)
+        public ScaleQuizModel(ILogger<ScaleQuizModel> logger, IAnalyticsService analyticsService)
         {
             _logger = logger;
+            _analyticsService = analyticsService;
         }
         public void OnGet()
         {
@@ -37,7 +40,9 @@ namespace SharpTheory.Pages
                 {
                     RawInts.Add(i);
                 }
-            }  
+            }
+            _logger.LogInformation("ScaleQuiz page loaded at {Time}", DateTime.Now);
+            _analyticsService.SendEventAsync("PageView");
         }
     }
 }

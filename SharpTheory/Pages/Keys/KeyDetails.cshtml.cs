@@ -8,9 +8,9 @@ namespace SharpTheory.Pages
 {
     public class KeyDetailsModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<KeyDetailsModel> _logger;
         private readonly IAnalyticsService _analyticsService;
-        public KeyDetailsModel(ILogger<IndexModel> logger, IAnalyticsService analyticsService)
+        public KeyDetailsModel(ILogger<KeyDetailsModel> logger, IAnalyticsService analyticsService)
         {
             _logger = logger;
             _analyticsService = analyticsService;
@@ -40,7 +40,7 @@ namespace SharpTheory.Pages
             }
             var now = DateTime.Now;
             _logger.LogInformation("KeyDetails page loaded at {Time}", now);
-            _ = _analyticsService.SendEventAsync("KeyDetailsPageView");
+            _ = _analyticsService.SendEventAsync("PageView");
         }
     }
 }
