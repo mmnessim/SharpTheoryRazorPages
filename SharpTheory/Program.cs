@@ -22,6 +22,7 @@ builder.Services.AddSession();
 
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
+builder.Services.AddSingleton<TheoryDataService>();
 
 var app = builder.Build();
 

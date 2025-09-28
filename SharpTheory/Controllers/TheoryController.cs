@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SharpTheory.Models;
+using SharpTheory.Services;
 using System.Text.Json;
 
 namespace SharpTheory.Controllers
@@ -11,18 +12,20 @@ namespace SharpTheory.Controllers
     {
         private readonly ILogger<TheoryController> _logger;
         private static readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-       
-        public TheoryController(ILogger<TheoryController> logger)
+        private readonly TheoryDataService _dataService;
+
+
+        public TheoryController(ILogger<TheoryController> logger, TheoryDataService dataService)
         {
             _logger = logger;
+            _dataService = dataService;
         }
 
         [HttpGet("description")]
         public ActionResult<TheoryDescription> GetDescription()
         {
             _logger.LogInformation("GET api/description called");
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetDescription");
@@ -35,8 +38,7 @@ namespace SharpTheory.Controllers
         public ActionResult<IEnumerable<TheoryKey>> GetAllKeys()
         {
             _logger.LogInformation("GET api/keys/all called");
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetAllKeys");
@@ -48,9 +50,8 @@ namespace SharpTheory.Controllers
         [HttpGet("keys/sharps")]
         public ActionResult<TheoryKey> GetKeysAllSharps()
         {
-            _logger.LogInformation("GET api/keys/sharps called");
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            _logger.LogInformation("GET api/keys/sharps called"); 
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetKeysAllSharps");
@@ -64,8 +65,7 @@ namespace SharpTheory.Controllers
         public ActionResult<IEnumerable<TheoryKey>> GetKeysBySharps(int numsharps)
         {
             _logger.LogInformation("GET api/keys/sharps/{numsharps} called", numsharps);
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetKeysBySharps");
@@ -79,8 +79,7 @@ namespace SharpTheory.Controllers
         public ActionResult<TheoryKey> GetKeysAllFlats()
         {
             _logger.LogInformation("GET api/keys/flats called");
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetKeysAllFlats");
@@ -94,8 +93,7 @@ namespace SharpTheory.Controllers
         public ActionResult<IEnumerable<TheoryKey>> GetKeysByFlats(int numflats)
         {
             _logger.LogInformation("GET api/keys/flats/{numflats} called", numflats);
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetKeysByFlats");
@@ -109,8 +107,7 @@ namespace SharpTheory.Controllers
         public ActionResult<TheoryScale> GetAllScales()
         {
             _logger.LogInformation("GET api/scales/all called");
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetAllScales");
@@ -123,8 +120,7 @@ namespace SharpTheory.Controllers
         public ActionResult<IEnumerable<TheoryScale>> GetScalesByInteger(int integer)
         {
             _logger.LogInformation("GET api/scales/integer/{integer} called", integer);
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetScalesByInteger");
@@ -138,8 +134,7 @@ namespace SharpTheory.Controllers
         public ActionResult<TheoryInteger> GetAllIntegers()
         {
             _logger.LogInformation("GET api/integers called");
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetAllIntegers");
@@ -152,8 +147,7 @@ namespace SharpTheory.Controllers
         public ActionResult<TheoryInteger> GetInteger(int integer)
         {
             _logger.LogInformation("GET api/integers/{integer} called", integer);
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetInteger");
@@ -167,8 +161,7 @@ namespace SharpTheory.Controllers
         public ActionResult<TheoryInteger> GetIntervals()
         {
             _logger.LogInformation("GET api/intervals called");
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetIntervals");
@@ -181,8 +174,7 @@ namespace SharpTheory.Controllers
         public ActionResult<TheoryInteger> GetIntervals(string interval)
         {
             _logger.LogInformation("GET api/interval/{interval} called", interval);
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetIntervals (by abbreviation)");
@@ -196,8 +188,7 @@ namespace SharpTheory.Controllers
         public ActionResult<IEnumerable<NondiatonicScale>> GetAllNonDiatonic()
         {
             _logger.LogInformation("GET api/nondiatonic called");
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetAllNonDiatonic");
@@ -210,8 +201,7 @@ namespace SharpTheory.Controllers
         public ActionResult<IEnumerable<NondiatonicScale>> GetAllOctatonic()
         {
             _logger.LogInformation("GET api/nondiatonic/octatonic called");
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetAllOctatonic");
@@ -224,8 +214,7 @@ namespace SharpTheory.Controllers
         public ActionResult<NondiatonicScale> GetOctatonicByInt(int integer)
         {
             _logger.LogInformation("GET api/nondiatonic/octatonic/{integer} called", integer);
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetOctatonicByInt");
@@ -239,8 +228,7 @@ namespace SharpTheory.Controllers
         public ActionResult<IEnumerable<NondiatonicScale>> GetAllWholeTone()
         {
             _logger.LogInformation("GET api/nondiatonic/wholetone called");
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetAllWholeTone");
@@ -253,8 +241,7 @@ namespace SharpTheory.Controllers
         public ActionResult<NondiatonicScale> GetWholeToneByInt(int integer)
         {
             _logger.LogInformation("GET api/nondiatonic/wholetone/{integer} called", integer);
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json, _jsonOptions);
+            var root = _dataService.Root;
             if (root == null)
             {
                 _logger.LogWarning("TheoryRoot not found in GetWholeToneByInt");

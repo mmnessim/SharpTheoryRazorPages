@@ -68,6 +68,8 @@ namespace SharpTheory.Pages
                     RawInts.Add(i);
                 }
             }
+            _logger.LogInformation("ScaleQuiz page loaded at {Time}", DateTime.Now);
+            _analyticsService.SendEventAsync("PageView");
         }
     }
 }
