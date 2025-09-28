@@ -1,4 +1,4 @@
-﻿@page "/scalequiz"
+﻿@page "/scalevisualizer"
 @model SharpTheory.Pages.ScaleQuizModel
 <h1>
     Scale Visualizer
@@ -22,9 +22,9 @@
             @foreach (var note in whiteKeyNotes)
             {
                 <div class="white-key 
-                                    @(Model.RawInts.Contains(note) ? "included-in-key" : "")
-                                    @(Model.RawInts[0] == note ? "tonic-key" : "")
-                                    @(Model.RawInts[4] == note ? "dominant-key" : "")     
+                            @(Model.RawInts.Contains(note) ? "included-in-key" : "")
+                            @(Model.RawInts[0] == note ? "tonic-key" : "")
+                            @* @(Model.RawInts[4] == note ? "dominant-key" : "")      *@
                                 " data-note="@note">
                     @Model.Integers?.FirstOrDefault(i => i.Integer == note)?.Names[0]
                 </div>
@@ -32,9 +32,9 @@
             @foreach (var note in whiteKeyNotes)
             {
                 <div class="white-key
-                                    @(Model.RawInts.Contains(note) ? "included-in-key" : "")
-                                    @(Model.RawInts[0] == note ? "tonic-key" : "")
-                                    @(Model.RawInts[4] == note ? "dominant-key" : "")
+                            @(Model.RawInts.Contains(note) ? "included-in-key" : "")
+                            @(Model.RawInts[0] == note ? "tonic-key" : "")
+                            @* @(Model.RawInts[4] == note ? "dominant-key" : "") *@
                                 " data-note="@note">
                     @Model.Integers?.FirstOrDefault(i => i.Integer == note)?.Names[0]
                 </div>
@@ -43,9 +43,9 @@
                 @foreach (var kvp in blackKeyOffsets)
                 {
                     <div class="black-key 
-                                         @(Model.RawInts.Contains(kvp.Key) ? "included-in-key" : "")
-                                         @(Model.RawInts[0] == kvp.Key ? "tonic-key" : "")
-                                         @(Model.RawInts[4] == kvp.Key ? "dominant-key" : "")
+                                @(Model.RawInts.Contains(kvp.Key) ? "included-in-key" : "")
+                                @(Model.RawInts[0] == kvp.Key ? "tonic-key" : "")
+                                @* @(Model.RawInts[4] == kvp.Key ? "dominant-key" : "") *@
                                 " style="left: @($"{kvp.Value}px");" data-note="@kvp.Key">
                         @Model.Integers?.FirstOrDefault(i => i.Integer == kvp.Key)?.Names[0] /
                         @Model.Integers?.FirstOrDefault(i => i.Integer == kvp.Key)?.Names[1]
@@ -54,9 +54,9 @@
                 @foreach (var kvp in blackKeyOffsets)
                 {
                     <div class="black-key
-                                        @(Model.RawInts.Contains(kvp.Key) ? "included-in-key" : "")
-                                        @(Model.RawInts[0] == kvp.Key ? "tonic-key" : "")
-                                        @(Model.RawInts[4] == kvp.Key ? "dominant-key" : "")
+                                @(Model.RawInts.Contains(kvp.Key) ? "included-in-key" : "")
+                                @(Model.RawInts[0] == kvp.Key ? "tonic-key" : "")
+                                @* @(Model.RawInts[4] == kvp.Key ? "dominant-key" : "") *@
                                 " style="left: @($"{kvp.Value + 335}px");" data-note="@kvp.Key">
                         @Model.Integers?.FirstOrDefault(i => i.Integer == kvp.Key)?.Names[0] /
                         @Model.Integers?.FirstOrDefault(i => i.Integer == kvp.Key)?.Names[1]
@@ -66,33 +66,22 @@
         </div>
     </div>
 
-    <div class="scale-container">
+    <div class="scale-container d-flex">
         @foreach (var I in Model.Integers)
         {
-            <button class="btn btn-secondary m-1
-                                    @(I.Integer == Model.Scale.Integer ? "included" : "")
-                                    @(Model.Scale.Major != null &&
-                                                                (
-                                                                    Model.Scale.Major.Notes.Contains(I.Names[0]) ||
-                                                                    (I.Names.Count > 1 && Model.Scale.Major.Notes.Contains(I.Names[1]))
-                                                                    )
-                                                                    ? "selected" : "")">
-                @I.Names[0]@(I.Names.Count > 1 ? " / " + I.Names[1] : "")
-            </button>
+            <form method="post">
+                <input type="hidden" asp-for="ScaleInt" value="@I.Integer" />
+                <button class="btn btn-secondary m-1
+                    @(I.Integer == Model.Scale.Integer ? "included" : "")
+                    @(Model.Scale.Major != null &&
+                    (
+                        Model.Scale.Major.Notes.Contains(I.Names[0]) ||
+                        (I.Names.Count > 1 && Model.Scale.Major.Notes.Contains(I.Names[1]))
+                        )
+                        ? "selected" : "")">
+                        @I.Names[0]@(I.Names.Count > 1 ? " / " + I.Names[1] : "")
+                 </button>
+            </form>
         }
     </div>
-}
-
-@if (Model.Scale != null)
-{
-    <p>
-        @Model.Scale.Tonic
-    </p>
-    @if (Model.Scale.Major != null)
-    {
-        @foreach (var note in Model.Scale.Major.Notes)
-        {
-            <span>@note</span>
-        }
-    }
 }

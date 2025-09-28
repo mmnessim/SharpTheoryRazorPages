@@ -14,6 +14,8 @@ namespace SharpTheory.Pages
         public List<int> RawInts { get; set; } = [];
         public TheoryScale? Scale { get; set; }
         public bool ShowNotes { get; set; } = true;
+        [BindProperty]
+        public int ScaleInt { get; set; } = 0;
 
         public ScaleQuizModel(ILogger<ScaleQuizModel> logger, IAnalyticsService analyticsService)
         {
@@ -31,9 +33,8 @@ namespace SharpTheory.Pages
             }
             Integers = root.Integers.ToList();
 
-            var random = new Random();
             var majorScales = root.Scales.Where(s => s.Major != null).ToList();
-            Scale = majorScales[random.Next(majorScales.Count)];
+            Scale = majorScales[0];
             if (Scale != null && Scale.Major != null)
             {
                 foreach (var i in Scale.Major.Integers)
@@ -43,6 +44,30 @@ namespace SharpTheory.Pages
             }
             _logger.LogInformation("ScaleQuiz page loaded at {Time}", DateTime.Now);
             _analyticsService.SendEventAsync("PageView");
+        }
+
+        public void OnPost()
+        {
+            _logger.LogInformation("ScaleQuiz OnPost called.");
+            var json = System.IO.File.ReadAllText("Data/data.json");
+            var root = JsonSerializer.Deserialize<TheoryRoot>(json);
+            if (root == null)
+            {
+                return;
+            }
+            Integers = root.Integers.ToList();
+
+            var majorScales = root.Scales.Where(s => s.Major != null).ToList();
+            _logger.LogInformation($"ScaleInt = {ScaleInt}");
+            Scale = majorScales.FirstOrDefault(s => s.Integer.Equals(ScaleInt));
+
+            if (Scale != null && Scale.Major != null)
+            {
+                foreach (var i in Scale.Major.Integers)
+                {
+                    RawInts.Add(i);
+                }
+            }
         }
     }
 }
