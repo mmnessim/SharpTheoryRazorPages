@@ -1,8 +1,12 @@
 ﻿@page "/scalevisualizer"
 @model SharpTheory.Pages.ScaleQuizModel
 <h1>
-    Scale Visualizer
+    Major Scale Visualizer
 </h1>
+@if (Model.Scale != null)
+{
+    <h2>@Model.Scale.Tonic Major </h2>
+}
 @{
     var whiteKeyNotes = new[] { 0, 2, 4, 5, 7, 9, 11 };
     var blackKeyOffsets = new Dictionary<int, int>
@@ -73,12 +77,7 @@
                 <input type="hidden" asp-for="ScaleInt" value="@I.Integer" />
                 <button class="btn btn-secondary m-1
                     @(I.Integer == Model.Scale.Integer ? "included" : "")
-                    @(Model.Scale.Major != null &&
-                    (
-                        Model.Scale.Major.Notes.Contains(I.Names[0]) ||
-                        (I.Names.Count > 1 && Model.Scale.Major.Notes.Contains(I.Names[1]))
-                        )
-                        ? "selected" : "")">
+                    ">
                         @I.Names[0]@(I.Names.Count > 1 ? " / " + I.Names[1] : "")
                  </button>
             </form>
