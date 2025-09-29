@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SharpTheory.Models;
 using System.Text.Json;
+using SharpTheory.Services;
 
 namespace SharpTheory.Pages
 {
@@ -10,6 +11,15 @@ namespace SharpTheory.Pages
     /// </summary>
     public class KeyReferenceModel : PageModel
     {
+        private readonly ILogger<KeyReferenceModel> _logger;
+        private readonly IAnalyticsService _analyticsService;
+        private readonly TheoryDataService _dataService;
+        public KeyReferenceModel(ILogger<KeyReferenceModel> logger, IAnalyticsService analyticsService, TheoryDataService dataService)
+        {
+            _logger = logger;
+            _analyticsService = analyticsService;
+            _dataService = dataService;
+        }
         /// <summary>
         /// Description of API
         /// </summary>
@@ -25,8 +35,9 @@ namespace SharpTheory.Pages
         /// </summary>
         public void OnGet()
         {
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json);
+            _logger.LogInformation("KeyReference page loaded");
+            _ = _analyticsService.SendEventAsync("PageView");
+            var root = _dataService.Root;
             Description = root?.Description;
             Keys = root?.Keys;
         }

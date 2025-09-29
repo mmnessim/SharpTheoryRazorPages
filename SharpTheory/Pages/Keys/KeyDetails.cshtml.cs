@@ -10,10 +10,12 @@ namespace SharpTheory.Pages
     {
         private readonly ILogger<KeyDetailsModel> _logger;
         private readonly IAnalyticsService _analyticsService;
-        public KeyDetailsModel(ILogger<KeyDetailsModel> logger, IAnalyticsService analyticsService)
+        private readonly TheoryDataService _dataService;
+        public KeyDetailsModel(ILogger<KeyDetailsModel> logger, IAnalyticsService analyticsService, TheoryDataService dataService)
         {
             _logger = logger;
             _analyticsService = analyticsService;
+            _dataService = dataService;
         }
 
         public TheoryKey? Key { get; set; }
@@ -21,8 +23,7 @@ namespace SharpTheory.Pages
         public TheoryScaleType? NatMinor { get; set; }
         public void OnGet(string id)
         {
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json);
+            var root = _dataService.Root;
             var noteName = id.Split("-")[0];
             var mode = id.Split("-")[1];
             id = id.Replace("-", " ");

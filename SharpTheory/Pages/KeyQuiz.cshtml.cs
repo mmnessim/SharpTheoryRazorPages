@@ -14,13 +14,15 @@ namespace SharpTheory.Pages
     {
         private readonly ILogger<KeyQuizModel> _logger;
         private readonly IAnalyticsService _analyticsService;
+        private readonly TheoryDataService _dataService;
 
-        public KeyQuizModel(ILogger<KeyQuizModel> logger, IAnalyticsService analyticsService)
+        public KeyQuizModel(ILogger<KeyQuizModel> logger, IAnalyticsService analyticsService, TheoryDataService dataService)
         {
             _logger = logger;
             _analyticsService = analyticsService;
+            _dataService = dataService;
         }
-        // Variabels for selected key
+
         /// <summary>
         /// Pool of keys to select from, filtered based on user preferences.
         /// </summary>
@@ -62,7 +64,7 @@ namespace SharpTheory.Pages
         /// </summary>
         public string? ResultMessage { get; set; }
 
-        // Flags to change KeyPool
+
         /// <summary>
         /// Gets or sets sharps only flag for KeyPool.
         /// </summary>
@@ -75,7 +77,7 @@ namespace SharpTheory.Pages
         [BindProperty(SupportsGet = true)]
         public bool OnlyFlats { get; set; } = false;
 
-        // Answer history
+
         /// <summary>
         /// Gets or sets the count of correct answers, stored in session.
         /// </summary>
@@ -114,8 +116,7 @@ namespace SharpTheory.Pages
                 HttpContext.Session.SetInt32("OnlyFlats", OnlyFlats ? 1 : 0);
             }
 
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json);
+            var root = _dataService.Root;
             if (OnlySharps)
             {
                 KeyPool = root?.Keys.Where(k => k.NumSharps > 0).ToList();
@@ -151,8 +152,7 @@ namespace SharpTheory.Pages
         /// </remarks>
         public void OnPost()
         {
-            var json = System.IO.File.ReadAllText("Data/data.json");
-            var root = JsonSerializer.Deserialize<TheoryRoot>(json);
+            var root = _dataService.Root;
 
             if (root != null && !string.IsNullOrEmpty(SelectedKeyName))
             {

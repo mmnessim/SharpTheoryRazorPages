@@ -7,7 +7,7 @@
         Click on any key to get some basic information about it.
     </p>
 
-    @if (Model.Keys != null && Model.Keys.Count > 0)
+    @if (Model.Keys is { Count: > 0 })
     {
         @await Html.PartialAsync("Partials/_KeyListPartial", Model.Keys)
     }
