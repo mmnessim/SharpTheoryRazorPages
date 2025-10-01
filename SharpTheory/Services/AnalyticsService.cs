@@ -10,7 +10,7 @@ namespace SharpTheory.Services
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger _logger;
-        private const string AnalyticsUrl = "https://localhost:7109/api/analytics/track";
+        private const string AnalyticsUrl = "http://192.168.68.4:8080/api/analytics/track";
 
         public AnalyticsService(IHttpClientFactory httpClientFactory, ILogger<AnalyticsService> logger)
         {
