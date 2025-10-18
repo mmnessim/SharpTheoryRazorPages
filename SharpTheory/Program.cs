@@ -36,6 +36,17 @@ builder.Services.AddRateLimiter(options =>
     });
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PublicPolicy", policy =>
+    {
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
