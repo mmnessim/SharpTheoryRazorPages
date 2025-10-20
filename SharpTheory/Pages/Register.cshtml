@@ -1,0 +1,33 @@
+﻿@page "/Register"
+@model SharpTheory.Pages.Register
+    
+<div>
+    <h1>Register a new User</h1>
+    <form method="post">
+        <div>
+            <label asp-for="Input.Name"></label>
+            <input asp-for="Input.Name" />
+            <span asp-validation-for="Input.Name"></span>
+        </div>
+        <div>
+            <label asp-for="Input.Email"></label>
+            <input asp-for="Input.Email" type="email" />
+            <span asp-validation-for="Input.Email"></span>
+        </div>
+        <div>
+            <label asp-for="Input.Password"></label>
+            <input asp-for="Input.Password" type="password" />
+            <span asp-validation-for="Input.Password"></span>
+        </div>
+        <div>
+            <label asp-for="Input.Birthday"></label>
+            <input asp-for="Input.Birthday" type="date" />
+            <span asp-validation-for="Input.Birthday"></span>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

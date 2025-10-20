@@ -22,7 +22,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSession();
 
-builder.Services.AddHttpClient();
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddHttpClient("Default")
+        .ConfigurePrimaryHttpMessageHandler(() =>
+            new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+            });
+}
+else
+{
+    builder.Services.AddHttpClient();
+}
+
+
 builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
 builder.Services.AddSingleton<TheoryDataService>();
 builder.Services.AddRateLimiter(options =>
