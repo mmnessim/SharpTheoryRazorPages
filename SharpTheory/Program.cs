@@ -29,8 +29,8 @@ builder.Services.AddRateLimiter(options =>
 {
     options.AddFixedWindowLimiter("fixed", config =>
     {
-        config.PermitLimit = 4;
-        config.Window = TimeSpan.FromSeconds(30);
+        config.PermitLimit = 60;
+        config.Window = TimeSpan.FromSeconds(60);
         config.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
         config.QueueLimit = 2;
     });
